@@ -36,7 +36,6 @@ class TipsController extends Controller
     public function store(Request $request)
     {
 
-        
         $request->validate([
             
             'coin_id' => 'required',
@@ -50,11 +49,7 @@ class TipsController extends Controller
             //'reason_down' => 'required',
             'reason_description' => 'required_if:reason_up, other',
             'reason_description' => 'required_unless:reason_down, other',
-    
-
         ]);
-
-
 
 
         $tip = new Tip();
@@ -74,7 +69,6 @@ class TipsController extends Controller
         $tip->reason_description = $request->reason_description;
         
 
-    
 
         $tip->save();
 
@@ -83,11 +77,20 @@ class TipsController extends Controller
     
         return back();
         return redirect('/tips');
-    }
-
-    
+    }   
 
 }
+
+
+
+
+
+
+
+
+
+
+
 /*
     public function storeDropDownItems(Request $request)
     { 

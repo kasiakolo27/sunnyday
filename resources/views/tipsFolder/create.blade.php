@@ -52,6 +52,7 @@
                 </select>
                 @error('coin_id')
                 {{$message}}
+                <!-- {{$message}} <p style="color:blue;>  </p> -->
                 @enderror
 
 
@@ -169,7 +170,7 @@
 
 
                         <div class="p-1">
-        <label for="tip_reason_up">Reason behind your prediction UP </label><br>
+        <label for="tip_reason_up" id="resuplabel">Reason behind your prediction UP </label><br>
     </div>
         <div class="p-1">
          
@@ -191,7 +192,7 @@
 <br>
 
             <div class="p-1">
-            <label for="tip_reason_down">Reason behind your prediction DOWN</label><br>
+            <label for="tip_reason_down" id="resdownlabel">Reason behind your prediction DOWN</label><br>
         </div>
             <div class="p-1">
           
@@ -242,10 +243,13 @@
 </div> 
 
 <script type="text/javascript">
+    
      function callfunction() {
           myFunction();
           calculation();
-          //reasons();
+          //showReasons(); 
+          // show reason and
+          
       }
     //fetch the currency that has been selected on screen
     function myFunction() {
@@ -264,6 +268,7 @@
             calculation();
         });
     };
+    
     //Calculate the forecasted minimu price
     function calculation() {
         
@@ -273,32 +278,43 @@
         console.log(direction);
         if (direction =='up'){
         $('#fp').val((parseInt(cp) * (parseFloat(fp) / 100)) + parseInt(cp));
+        $('#resdown').hide();
+        $('#resdownlabel').hide();
+        $('#resup').show();
+        $('#resuplabel').show();
+
+        
     }   
       else {
-        $('#fp').val(
-            parseInt(cp) * ((100 - parseFloat(fp))   / 100 )
-            );
+        $('#fp').val(parseInt(cp) * ((100 - parseFloat(fp))   / 100 ));
+            $('#resup').hide();
+            $('#resuplabel').hide();
+            $('#resdown').show();
+            $('#resdown').show();
+
    }
 }
 
-/* Kasia: dynamic dropdown: if price up show me reasons up, if price down, reasons down
 
-function reasons(){
+/*
+function showReasons(){
 
     var direction = $('#type2').val();
     console.log(direction);
 
     if (direction =='up'){
-        console.log $('#resup');
+        console.log($('#resup').val());
     }   
       else {
-        $('#resdown)').val(
-            console.log$('#resdown');  
-         );
+            console.log($('#resdown').val());  
+        
    }
 }
 
 */
+
+
+
    
 </script>
 @endsection
